@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+
+.searchWeatherButton {
+  height: 4vh;
+  width: 7vh;
+  background-color: paleturquoise;
+  border-radius: 5px;
+}
+
+.searchWeatherButton:hover {
+  background-color: rgb(114, 211, 211);
+}
+
+input {
+  border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.searchCityInput {
+  font-size: 24px;
+  margin-right: 1vw;
+  border-radius: 5px;
+  border: 3px paleturquoise solid;
+  color:darkslateblue
+}
+
+
+.BigContainer {
+  width: 100vw;
+  height: 100vh;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.Container {
+  display: flex; 
+}
+
+Button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
