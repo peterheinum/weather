@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Smartcard from "./components/smartcard";
 
 
 
@@ -15,11 +16,17 @@ class App extends Component {
 
   checkGeolocation = () => {
     if (navigator.geolocation) {
-      
-      console.log(navigator.geolocation);
+      console.log(navigator.geolocation.getCurrentPosition(this.displayLocationInfo));
     } else {
       console.log("no")
     }
+  }
+
+  displayLocationInfo = (position) => {
+    const lng = position.coords.longitude;
+    const lat = position.coords.latitude;
+  
+    console.log(`longitude: ${ lng } | latitude: ${ lat }`);
   }
 
   fetchCity = () => {
@@ -56,7 +63,7 @@ class App extends Component {
             <button className="searchWeatherButton" onClick={this.checkGeolocation}>Search</button>
           </div>
         </div>
-
+      <Smartcard />
       </div>
     );
   }
