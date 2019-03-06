@@ -1,0 +1,9 @@
+.weatherCardBorder {
+  border: solid 1px black;
+  height: 50vh;
+  width: 25vw;
+  border-radius: 20px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
