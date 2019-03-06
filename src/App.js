@@ -38,26 +38,20 @@ class App extends Component {
     }).then(data => data.json()).then(result => {
       this.setState({
         weatherInfo: [
-          {
-            humidity: result.Humidity,
-            temperature: result.Temperature,
-            summary: result.summary,
-            sunrise: result.sunrise,
-            sunset: result.sunset,
-            windspeed: result.windSpeed,
-          }
+          result.Humidity,
+          result.Temperature,
+          result.summary,
+          result.sunrise,
+          result.sunset,
+          result.windSpeed 
         ]
       })
-      console.log(result);
     });
   }
 
 
   render() {
-    this.state.weatherInfo.forEach(value => {
-      console.log(value);
-      
-    })
+   
 
 
 
