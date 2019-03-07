@@ -6,4 +6,12 @@
   display:flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-top: 5vh;
+}
+
+.weatherInfoP {
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  background-color:black;
 }

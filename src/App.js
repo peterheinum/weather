@@ -4,11 +4,14 @@ import Smartcard from "./components/smartcard";
 
 
 
+
 class App extends Component {
   state = {
     items: [],
     searchValue: "",
-    weatherInfo: []
+    weatherInfo: [],
+    loading: false
+
   }
 
   handleSearchQuery = (event) => {
@@ -31,6 +34,7 @@ class App extends Component {
   }
 
   fetchCity = () => {
+    this.setState({ loading: true })
     fetch(`https://weatherbackend.herokuapp.com/api/currently/${this.state.searchValue}`, {
       headers: {
         "content-type": "application/json"
@@ -43,29 +47,40 @@ class App extends Component {
           result.summary,
           result.sunrise,
           result.sunset,
-          result.windSpeed 
+          result.windSpeed,
+          this.state.searchValue
         ]
       })
+      this.setState({ loading: false })
     });
   }
 
 
   render() {
-   
+    let loader = null;
+    if(this.state.loading){
+      loader = "lds-facebook";
+    }
+    if(!this.state.loading){
+      loader = "";
+    }
 
 
 
     return (
       <div className="App">
+      <div className="rainy"></div>
         <div className="BigContainer">
+      
           <div className="Container">
-            {/* {this.state.weatherInfo.forEach(value => {
-              console.log(value);
-            })} */}
-            <Smartcard weatherInfo={this.state.weatherInfo} />
+
+
             <input className="searchCityInput" value={this.state.searchValue} onChange={this.handleSearchQuery} placeholder="Weather, where?"></input>
             <button className="searchWeatherButton" onClick={this.fetchCity}>Search</button>
+            <div className={loader}><div></div><div></div><div></div></div>
           </div>
+          
+          <Smartcard weatherInfo={this.state.weatherInfo} />
         </div>
 
       </div>
