@@ -3,7 +3,7 @@
   background-color: aliceblue;
   padding: 3vw;
   height: 60vh;
-  width: 27vw;
+  width: 30vw;
   border-radius: 20px;
   display:flex;
   flex-direction: column;
@@ -25,6 +25,10 @@ h3 {
   justify-content: space-around;
 }
 
+.alignCenter {
+  align-items:center;
+}
+
 .weatherInfoP {
   color:darkslateblue;
   width: 100%;
@@ -33,6 +37,7 @@ h3 {
   padding-left: 2vw;
   font-size: 18px; 
   width: 80%; 
+
 }
 
 .WholeBody {
