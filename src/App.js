@@ -14,6 +14,7 @@ class App extends Component {
     unit: "C",
     location: null,
     typeOFContent: "start",
+    forecast: [],
   }
 
   handleSearchQuery = (event) => {
@@ -27,10 +28,11 @@ class App extends Component {
     }
   }
 
+
   switchUnit = (event) => {
-    this.setState({ typeOFContent: "forecast" })
-    // if (this.state.unit === 'C') this.setState({ unit: 'F' })
-    // if (this.state.unit === 'F') this.setState({ unit: 'C' })
+    event.preventDefault();
+    if (this.state.unit === 'C') this.setState({ unit: 'F' })
+    if (this.state.unit === 'F') this.setState({ unit: 'C' })
   }
 
   checkGeolocation = () => {
@@ -100,8 +102,24 @@ class App extends Component {
         "content-type": "application/json"
       }
     }).then(data => data.json()).then(result => {
-      this.setState({ loading: false })
-      console.log(result);
+      let tempArray = [];
+      result.forEach(e => {
+        let weather = {
+          day: e.dayNr,
+          windSpeed: e.windSpeed,
+          summary: e.summary,
+          temperatureMin: e.temperatureMin,
+          temperatureMax: e.temperatureMax,
+          humidity: e.humidity,
+          sunrise: e.sunrise,
+          sunset: e.sunset,
+          icon: e.icon,
+          apparentTemperatureMin: e.apparentTemperatureMin,
+          apparentTemperatureMax: e.apparentTemperatureMax,
+        }
+        tempArray.push({ weather: weather });
+      });
+      this.setState({ forecast: tempArray, loading: false, typeOFContent: "forecast" })
     })
   }
 
@@ -132,12 +150,15 @@ class App extends Component {
               <button className="searchWeatherButton" onClick={this.fetchCity}>now</button>
               <button className="searchWeatherButton" onClick={this.fetchForecast}>forecast</button>
               <div className="ml-1">
+                <p><b>C/F</b></p>
                 <label className="switch">
                   <input type="checkbox" onChange={this.switchUnit} />
                   <span className="slider round"></span>
                 </label>
               </div>
-              <div className={loader}><div></div><div></div><div></div></div>
+              <div>
+                <div className={loader}><div></div><div></div><div></div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,7 +172,7 @@ class App extends Component {
 
     if (this.state.typeOFContent === "forecast") {
       return (
-        <Forecast forecast={this.state.forecastInfo} goback={this.gobackToMainMenu} />
+        <Forecast forecast={this.state.forecast} goback={this.gobackToMainMenu} />
       )
     }
 

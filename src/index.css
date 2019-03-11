@@ -27,7 +27,6 @@ code {
   height: 4vh;
   width: 12vh;
   background-color: rgb(74, 226, 94);
-  
   border-radius: 5px;
   color: white;
 }
@@ -129,3 +128,39 @@ Button {
     height: 26px;
   }
 }
+
+.pl-1 {
+  padding-left:1vw;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  
+}
+
+@media only screen and (max-width: 800px) {
+  .ml-1{
+    display:flex;
+    flex-direction: row;
+    margin-top: 1vh;
+    }
+  .searchWeatherButton{
+    height: 6vh;
+    margin-top:1vh;
+  }
+  .Container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .searchWeatherButton {
+    height: 10vh;
+    width: 20vw;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  
+}
+

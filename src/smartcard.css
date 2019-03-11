@@ -74,19 +74,33 @@ h3 {
   background-color: rgb(141, 88, 88);
 }
 
+.headerOfCard {
+  font-size: 24px;
+  width: 100%;
+}
+
+
+
 @media only screen and (max-width: 1000px) {
   .weatherCardBorder {
     width: 40vw;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .weatherCardBorder {
-    width: 60vw;
+    width: 50vw;
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
+  .weatherCardBorder {
+    width: 50vw;
+  }
+}
+
+
+@media only screen and (max-width: 560px) {
   .weatherCardBorder {
     width: 80vw;
   }
