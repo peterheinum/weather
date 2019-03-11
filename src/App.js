@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Smartcard from "./components/smartcard";
 import Forecast from "./components/Forecast";
+import Matchicon from './matchicon';
+
 
 class App extends Component {
   state = {
@@ -20,7 +22,7 @@ class App extends Component {
   }
 
   handleKeyPress = (event) => {
-    if (event.key == 'Enter') {
+    if (event.key === 'Enter') {
       this.fetchCity();
     }
   }
@@ -73,6 +75,7 @@ class App extends Component {
             result.sunset,
             result.windSpeed,
             location,
+            result.icon,
             this.state.unit,
           ]
         })
@@ -84,13 +87,22 @@ class App extends Component {
   fetchForecast = () => {
     let searchValue = null;
     let location = "your location";
-    if(this.state.searchValue != null){
+    if (this.state.searchValue != null) {
       searchValue = this.state.searchValue;
       location = searchValue;
     }
     else if (this.state.location != null) {
       searchValue = this.state.location;
     }
+    this.setState({ loading: true })
+    fetch(`https://weatherbackend.herokuapp.com/api/forecast/${searchValue}/${this.state.unit}`, {
+      headers: {
+        "content-type": "application/json"
+      }
+    }).then(data => data.json()).then(result => {
+      this.setState({ loading: false })
+      console.log(result);
+    })
   }
 
   gobackToMainMenu = () => {
@@ -131,13 +143,13 @@ class App extends Component {
         </div>
       );
     }
-    if (this.state.typeOFContent == "currentweather") {
+    if (this.state.typeOFContent === "currentweather") {
       return (
         <Smartcard weatherInfo={this.state.weatherInfo} goback={this.gobackToMainMenu} />
       )
     }
 
-    if (this.state.typeOFContent == "forecast") {
+    if (this.state.typeOFContent === "forecast") {
       return (
         <Forecast forecast={this.state.forecastInfo} goback={this.gobackToMainMenu} />
       )

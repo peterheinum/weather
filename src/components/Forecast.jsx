@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../smartcard.css';
 import '../forecast.css';
+import { matchicon } from '../matchicon'
 
 
 export default class Forecast extends Component {
@@ -10,7 +11,8 @@ export default class Forecast extends Component {
 
   gotomain = () => {
     const { goback } = this.props;
-    goback();
+    // goback();
+    
   }
 
   render() {
@@ -21,29 +23,25 @@ export default class Forecast extends Component {
         <div className="topnav"> <button className="backButton" onClick={this.gotomain}>Back</button></div>
         <div className="flexContainer">
           <div className="forecastCard">
-          <p>Max: 6</p>
-          <p>min: -3</p>
-          <p>Cloudy</p>
+          
+            <p>Max: <b>6</b></p>
+            <p>min: <b>-3</b></p>
+            <p>Status: <b>Cloudy</b></p>
           </div>
           <div className="forecastCard">
-          <p>Max: 6</p>
-          <p>min: -3</p>
-          <p>Cloudy</p>
+            <p>Max: <b>6</b></p>
+            <p>min: <b>-3</b></p>
+            <p>Status: <b>Cloudy</b></p>
           </div>
           <div className="forecastCard">
-          <p>Max: 6</p>
-          <p>min: -3</p>
-          <p>Cloudy</p>
+            <p>Max: <b>6</b></p>
+            <p>min: <b>-3</b></p>
+            <p>Status: <b>Cloudy</b></p>
           </div>
           <div className="forecastCard">
-          <p>Max: 6</p>
-          <p>min: -3</p>
-          <p>Cloudy</p>
-          </div>
-          <div className="forecastCard">
-          <p>Max: 6</p>
-          <p>min: -3</p>
-          <p>Cloudy</p>
+            <p>Max: <b>6</b></p>
+            <p>min: <b>-3</b></p>
+            <p>Status: <b>Cloudy</b></p>
           </div>
         </div>
       </div>

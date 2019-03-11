@@ -1,17 +1,28 @@
 .weatherCardBorder {
-  border: solid 25px rgb(117, 170, 231);
-  height: 40vh;
-  width: 25vw;
+  border: solid 2px rgb(244, 248, 252); 
+  background-color: aliceblue;
+  padding: 3vw;
+  height: 60vh;
+  width: 27vw;
   border-radius: 20px;
   display:flex;
   flex-direction: column;
   justify-content: space-around;
   margin-top: 5vh;
+  box-shadow: 1px;
+  -webkit-box-shadow: 7px 11px 61px -22px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 11px 61px -22px rgba(0,0,0,0.75);
+  box-shadow: 7px 11px 61px -22px rgba(0,0,0,0.75);
 }
 
 h3 {
   color:darkslateblue;
   width: 100%;
+}
+
+.flexRight {
+  display:flex;
+  justify-content: space-around;
 }
 
 .weatherInfoP {
@@ -31,11 +42,12 @@ h3 {
 
 .topnav {
   width: 100vw;
-  height: 20vh;
+  height: 10vh;
   display:flex;
   justify-content: center;
   align-items:center;
 }
+
 
 
 
@@ -56,3 +68,22 @@ h3 {
 .backButton:hover {
   background-color: rgb(141, 88, 88);
 }
+
+@media only screen and (max-width: 1000px) {
+  .weatherCardBorder {
+    width: 40vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .weatherCardBorder {
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .weatherCardBorder {
+    width: 80vw;
+  }
+}
+

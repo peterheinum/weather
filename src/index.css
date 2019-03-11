@@ -13,6 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   overflow-x: hidden;
+  background-color: paleturquoise;
 }
 
 code {
@@ -24,13 +25,16 @@ code {
 .searchWeatherButton {
   margin-left: 1vw;
   height: 4vh;
-  width: 7vh;
-  background-color: paleturquoise;
+  width: 12vh;
+  background-color: rgb(74, 226, 94);
+  
   border-radius: 5px;
+  color: white;
 }
 
 .searchWeatherButton:hover {
-  background-color: rgb(114, 211, 211);
+  background-color: rgb(29, 202, 52);
+  color:white;
 }
 
 input {
@@ -44,7 +48,8 @@ input {
 
 .searchCityInput {
   font-size: 24px;
-  
+  background-color: #ffff;
+  padding: 3px;
   border-radius: 5px;
   border: 3px paleturquoise solid;
   color:darkslateblue
@@ -99,7 +104,7 @@ Button {
   position: absolute;
   left: 6px;
   width: 13px;
-  background: paleturquoise;
+  background: #ffff;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 .lds-facebook div:nth-child(1) {
