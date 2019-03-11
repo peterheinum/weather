@@ -4,7 +4,8 @@ import '../smartcard.css'
 
 export default class smartcard extends Component {
   gotomain = () => {
-    window.location='';
+    const { goback } = this.props;
+    goback();
   }
 
   render() {

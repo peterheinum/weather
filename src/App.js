@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Smartcard from "./components/smartcard";
+import Forecast from "./components/Forecast";
 
 class App extends Component {
   state = {
@@ -10,16 +11,24 @@ class App extends Component {
     loading: false,
     unit: "C",
     location: null,
-    contentExists: false,
+    typeOFContent: "start",
   }
 
   handleSearchQuery = (event) => {
     this.setState({ searchValue: event.target.value });
+
+  }
+
+  handleKeyPress = (event) => {
+    if (event.key == 'Enter') {
+      this.fetchCity();
+    }
   }
 
   switchUnit = (event) => {
-    if (this.state.unit === 'C') this.setState({ unit: 'F' })
-    if (this.state.unit === 'F') this.setState({ unit: 'C' })
+    this.setState({ typeOFContent: "forecast" })
+    // if (this.state.unit === 'C') this.setState({ unit: 'F' })
+    // if (this.state.unit === 'F') this.setState({ unit: 'C' })
   }
 
   checkGeolocation = () => {
@@ -67,11 +76,26 @@ class App extends Component {
             this.state.unit,
           ]
         })
-        this.setState({ loading: false, contentExists: true })
+        this.setState({ loading: false, typeOFContent: "currentweather" })
       });
     }
   }
 
+  fetchForecast = () => {
+    let searchValue = null;
+    let location = "your location";
+    if(this.state.searchValue != null){
+      searchValue = this.state.searchValue;
+      location = searchValue;
+    }
+    else if (this.state.location != null) {
+      searchValue = this.state.location;
+    }
+  }
+
+  gobackToMainMenu = () => {
+    this.setState({ typeOFContent: "start" });
+  }
 
   componentDidMount() {
     this.checkGeolocation();
@@ -86,14 +110,15 @@ class App extends Component {
       loader = "";
     }
 
-    if (!this.state.contentExists) {
+    if (this.state.typeOFContent == "start") {
       return (
         <div className="App">
           <div className="rainy"></div>
           <div className="BigContainer">
             <div className="Container">
-              <input className="searchCityInput" value={this.state.searchValue} onChange={this.handleSearchQuery} placeholder="Weather, where?"></input>
-              <button className="searchWeatherButton" onClick={this.fetchCity}>Search</button>
+              <input className="searchCityInput" value={this.state.searchValue} onChange={this.handleSearchQuery} onKeyPress={this.handleKeyPress} placeholder="Weather, where?"></input>
+              <button className="searchWeatherButton" onClick={this.fetchCity}>now</button>
+              <button className="searchWeatherButton" onClick={this.fetchForecast}>forecast</button>
               <div className="ml-1">
                 <label className="switch">
                   <input type="checkbox" onChange={this.switchUnit} />
@@ -102,16 +127,19 @@ class App extends Component {
               </div>
               <div className={loader}><div></div><div></div><div></div></div>
             </div>
-
-
           </div>
-
         </div>
       );
     }
-    if (this.state.contentExists) {
+    if (this.state.typeOFContent == "currentweather") {
       return (
-        <Smartcard weatherInfo={this.state.weatherInfo} />
+        <Smartcard weatherInfo={this.state.weatherInfo} goback={this.gobackToMainMenu} />
+      )
+    }
+
+    if (this.state.typeOFContent == "forecast") {
+      return (
+        <Forecast forecast={this.state.forecastInfo} goback={this.gobackToMainMenu} />
       )
     }
 

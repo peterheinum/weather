@@ -1,0 +1,24 @@
+.flexContainer {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.forecastCard {
+  width: 70vw;
+  border-top: darkgrey solid 1px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.forecastCard>p{
+  margin-top: 3vh;
+}
+
+.forecastContainer{
+  height: 100vh;
+}
