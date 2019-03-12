@@ -7,7 +7,7 @@ import Matchicon from './matchicon';
 
 class App extends Component {
   state = {
-    items: [],
+    icon: "cloud",
     searchValue: "",
     weatherInfo: [],
     loading: false,
@@ -30,15 +30,13 @@ class App extends Component {
 
 
   switchUnit = (event) => {
-    event.preventDefault();
-    if (this.state.unit === 'C') this.setState({ unit: 'F' })
-    if (this.state.unit === 'F') this.setState({ unit: 'C' })
+    this.state.unit === 'C' ? this.setState({ unit: 'F' }) : this.setState({ unit: 'C' });
+    console.log(this.state.unit);
   }
 
   checkGeolocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.displayLocationInfo);
-      this.fetchCity();
     } else {
       console.log("no")
     }
@@ -48,6 +46,7 @@ class App extends Component {
     const lng = position.coords.longitude;
     const lat = position.coords.latitude;
     this.setState({ location: `${lat},-${lng}` })
+    this.fetchCity();
   }
 
   fetchCity = () => {
@@ -143,7 +142,7 @@ class App extends Component {
       weekArray.push(weekday[counter])
       counter++;
       if (counter == 6) {
-        for (let j = 0; j < start + i; j++) {
+        for (let j = 0; j < 6; j++) {
           weekArray.push(weekday[j]);
         }
       }
@@ -151,13 +150,24 @@ class App extends Component {
     return weekArray;
   }
 
+  getRandomIcon = () => {
+    let icons = [
+      'rainy',
+      'cloud',
+      // 'sun',
+      // 'cloudtwo',
+    ]
+
+    this.setState({ icon: icons[Math.floor(Math.random() * icons.length)] })
+  }
+
   gobackToMainMenu = () => {
-    this.setState({ typeOFContent: "start" });
+    this.setState({ typeOFContent: "start", unit: 'C', searchValue: '', weatherInfo: [], forecast: [] });
   }
 
   componentDidMount() {
     this.checkGeolocation();
-    console.log(this.getWeekFromNow());
+    this.getRandomIcon();
   }
 
   render() {
@@ -169,10 +179,10 @@ class App extends Component {
       loader = "";
     }
 
-    if (this.state.typeOFContent == "start") {
+    if (this.state.typeOFContent === "start") {
       return (
         <div className="App">
-          <div className="rainy"></div>
+          <div className={this.state.icon}/>
           <div className="BigContainer">
             <div className="Container">
               <input className="searchCityInput" value={this.state.searchValue} onChange={this.handleSearchQuery} onKeyPress={this.handleKeyPress} placeholder="Weather, where?"></input>
@@ -201,7 +211,7 @@ class App extends Component {
 
     if (this.state.typeOFContent === "forecast") {
       return (
-        <Forecast forecast={this.state.forecast} goback={this.gobackToMainMenu} location={this.state.searchValue} unit={this.state.unit}/>
+        <Forecast forecast={this.state.forecast} goback={this.gobackToMainMenu} location={this.state.searchValue} unit={this.state.unit} />
       )
     }
 

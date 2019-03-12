@@ -93,8 +93,47 @@ input:checked + .slider:before {
   }
 }
 
+.cloud {
+  margin-top:15vh;
+	-webkit-animation: rainy 5s ease-in-out infinite 1s;
+	animation: rainy 5s ease-in-out infinite 1s;
+	background: rgb(255, 255, 255); 
+	border-radius: 50%;
+	-webkit-box-shadow: 
+		rgb(255, 255, 255) 65px -15px 0 -5px, 
+		rgb(255, 255, 255) 25px -25px, 
+		rgb(255, 255, 255) 30px 10px, 
+		rgb(255, 255, 255) 60px 15px 0 -10px, 
+		rgb(255, 255, 255) 85px 5px 0 -5px;
+	box-shadow: 
+		rgb(255, 255, 255) 65px -15px 0 -5px, 
+		rgb(255, 255, 255) 25px -25px, 
+		rgb(255, 255, 255) 30px 10px, 
+		rgb(255, 255, 255) 60px 15px 0 -10px, 
+		rgb(255, 255, 255) 85px 5px 0 -5px;
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+}
+.cloud:after {
+	-webkit-animation: rainy_shadow 5s ease-in-out infinite 1s;
+	animation: rainy_shadow 5s ease-in-out infinite 1s;
+	background: #000000;
+	border-radius: 50%;
+	content: '';
+	height: 15px;
+	width: 115px;
+	opacity: 0.2;
+	position: absolute;
+	left: 5px; 
+	bottom: -60px;
+	-webkit-transform: scale(.7);
+	-ms-transform: scale(.7);
+	transform: scale(.7);
+}
+
 .rainy {
-  margin-top:6vh;
+  margin-top:15vh;
 	-webkit-animation: rainy 5s ease-in-out infinite 1s;
 	animation: rainy 5s ease-in-out infinite 1s;
 	background: #CCCCCC; 

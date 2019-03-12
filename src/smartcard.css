@@ -67,12 +67,12 @@ h3 {
 .backButton {
   height: 4vh;
   width: 7vh;
-  background-color: rgb(189, 116, 116);
+  background-color: rgb(248, 211, 90);
   border-radius: 5px;
 }
 
 .backButton:hover {
-  background-color: rgb(141, 88, 88);
+  background-color: rgb(255, 196, 0);
 }
 
 .headerOfCard {

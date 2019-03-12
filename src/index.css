@@ -57,7 +57,7 @@ input {
 
 .BigContainer {
   width: 100vw;
-  height: 100vh;
+  height: 78vh;
   display:flex;
   justify-content: center;
   align-items:center;
@@ -145,7 +145,8 @@ Button {
     margin-top: 1vh;
     }
   .searchWeatherButton{
-    height: 6vh;
+    height: 30px;
+    width:302px;
     margin-top:1vh;
   }
   .Container {
