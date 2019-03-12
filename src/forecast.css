@@ -2,23 +2,64 @@
   display:flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
-.forecastCard {
-  width: 70vw;
-  border-top: darkgrey solid 1px;
-  display: flex;
+.weatherCard {
+  border: solid 2px rgb(244, 248, 252); 
+  background-color: aliceblue;
+  padding: 3vw;
+  height: 60vh;
+  width: 30vw;
+  border-radius: 20px;
+  display:flex;
   flex-direction: column;
-  align-items:center;
-  justify-content: center;
-  height: 70vh;
+  justify-content: space-around;
+  margin-top: 5vh;
+  margin-left: 1vw;
+  box-shadow: 1px;
+  -webkit-box-shadow: 7px 11px 61px -22px rgba(0,0,0,0.75);
+  -moz-box-shadow: 7px 11px 61px -22px rgba(0,0,0,0.75);
+  box-shadow: 7px 11px 61px -22px rgba(0,0,0,0.75);
+
 }
 
-.forecastCard>p{
-  margin-top: 3vh;
+
+.midflex {
+  margin-left: 7vw;
+  padding-bottom: 3vh;
 }
 
-.forecastContainer{
-  height: 100vh;
+@media only screen and (min-width: 600px) {
+  .midflex {
+    margin-left: 1vw;
+    display:flex;  
+    flex-wrap: wrap;
+  }
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .weatherCard {
+    width: 40vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .weatherCard {
+    width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .weatherCard {
+    width: 50vw;
+  }
+}
+
+
+@media only screen and (max-width: 560px) {
+  .weatherCard {
+    width: 80vw;
+  }
 }

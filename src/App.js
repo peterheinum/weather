@@ -103,9 +103,11 @@ class App extends Component {
       }
     }).then(data => data.json()).then(result => {
       let tempArray = [];
+      let weekArray = this.getWeekFromNow();
+
       result.forEach(e => {
         let weather = {
-          day: e.dayNr,
+          day: weekArray[e.dayNr],
           windSpeed: e.windSpeed,
           summary: e.summary,
           temperatureMin: e.temperatureMin,
@@ -123,12 +125,39 @@ class App extends Component {
     })
   }
 
+  getWeekFromNow() {
+    let date = new Date();
+    let counter = date.getDay();
+    let start = date.getDay();
+    let weekArray = [];
+    let weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    for (let i = 0; i < 6; i++) {
+      weekArray.push(weekday[counter])
+      counter++;
+      if (counter == 6) {
+        for (let j = 0; j < start + i; j++) {
+          weekArray.push(weekday[j]);
+        }
+      }
+    }
+    return weekArray;
+  }
+
   gobackToMainMenu = () => {
     this.setState({ typeOFContent: "start" });
   }
 
   componentDidMount() {
     this.checkGeolocation();
+    console.log(this.getWeekFromNow());
   }
 
   render() {
@@ -172,7 +201,7 @@ class App extends Component {
 
     if (this.state.typeOFContent === "forecast") {
       return (
-        <Forecast forecast={this.state.forecast} goback={this.gobackToMainMenu} />
+        <Forecast forecast={this.state.forecast} goback={this.gobackToMainMenu} location={this.state.searchValue} unit={this.state.unit}/>
       )
     }
 

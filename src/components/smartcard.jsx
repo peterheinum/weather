@@ -18,8 +18,7 @@ export default class smartcard extends Component {
           <div className="topnav"> <button className="backButton" onClick={this.gotomain}>Back</button></div>
           <div className="FlexMiddle">
             <div className="weatherCardBorder">
-                <div className="weatherInfoP alignCenter headerOfCard">Weather in  <b className="flexRight alignCenter pl-1">{weatherInfo[6]}<div className="iconContainer"><Matchicon icon={weatherInfo[7].toString()} /></div></b></div>
-                {/* <h3>Weather in {weatherInfo[6]}</h3> <div className="iconContainer"><Matchicon icon={weatherInfo[7].toString()} /></div> */}
+              <div className="weatherInfoP alignCenter headerOfCard">Weather in  <b className="flexRight alignCenter pl-1">{weatherInfo[6]}<div className="iconContainer"><Matchicon icon={weatherInfo[7].toString()} /></div></b></div>
               <div className="weatherInfoP">Summary:  <b className="pl-1">{weatherInfo[2]}</b></div><br></br>
               <div className="weatherInfoP">Temperature:  <b className="pl-1"> {weatherInfo[1]}° {weatherInfo[8]}</b></div><br></br>
               <div className="weatherInfoP">Windspeed:  <b className="pl-1"> {weatherInfo[5]}</b></div> <br></br>
