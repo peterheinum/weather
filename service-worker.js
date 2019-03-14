@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/peterheinum/weather/precache-manifest.de0c546593e0587a5e9618165e9aea2e.js"
+  "/peterheinum/weather/precache-manifest.a408300213d366a3b7c0229f36ef22d0.js"
 );
 
 workbox.clientsClaim();

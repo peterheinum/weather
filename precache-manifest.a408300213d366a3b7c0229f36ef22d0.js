@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "70ef78eab2d8614f39cd",
-    "url": "/peterheinum/weather/static/css/main.0c0f463a.chunk.css"
+    "revision": "7540fa25ef66503755b2",
+    "url": "/peterheinum/weather/static/css/main.bdbb3207.chunk.css"
   },
   {
-    "revision": "70ef78eab2d8614f39cd",
-    "url": "/peterheinum/weather/static/js/main.70ef78ea.chunk.js"
+    "revision": "7540fa25ef66503755b2",
+    "url": "/peterheinum/weather/static/js/main.7540fa25.chunk.js"
   },
   {
     "revision": "8e17adaf7a2e79128f43",
@@ -64,7 +64,7 @@ self.__precacheManifest = [
     "url": "/peterheinum/weather/static/media/cloudy.82408b66.svg"
   },
   {
-    "revision": "f56ae1cc90e95b917a8d6b4d7d2d58e2",
+    "revision": "4df763e1e5ab0c5fc155baa3b9c4f86b",
     "url": "/peterheinum/weather/index.html"
   }
 ];
