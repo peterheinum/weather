@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 import Smartcard from './components/Smartcard';
 import Forecast from './components/Forecast';
 import DetailedDay from './components/DetailedDay.jsx';
@@ -47,7 +47,7 @@ class App extends Component {
   displayLocationInfo = (position) => {
     const lng = position.coords.longitude;
     const lat = position.coords.latitude;
-    this.setState({ location: `${lat},-${lng}`, searchValue: `${lat},-${lng}` })
+    this.setState({ location: `${lat},${lng}`, searchValue: `${lat},${lng}` })
   }
 
   fetchCity = () => {
@@ -97,8 +97,8 @@ class App extends Component {
     else if (this.state.location != null) {
       searchValue = this.state.location;
     }
-    this.setState({ loading: true })
     if (searchValue.length > 1) {
+      this.setState({ loading: true })
       fetch(`https://weatherbackend.herokuapp.com/api/forecast/${searchValue}/${this.state.unit}`, {
         headers: {
           "content-type": "application/json"
@@ -196,6 +196,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    let _element = React.createRef();
+    console.log(_element);
     this.checkGeolocation();
     this.getRandomIcon();
   }

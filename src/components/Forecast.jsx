@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../smartcard.css';
-import '../forecast.css';
+import '../styles/smartcard.css';
+import '../styles/forecast.css';
 import Matchicon from '../matchicon'
 
 
@@ -18,8 +18,8 @@ export default class Forecast extends Component {
   render() {
     const { forecast } = this.props;
     const { unit } = this.props;
-    const { location } = this.props;
-
+    let { location } = this.props;
+    if(location.split(',')[1] !== undefined) location = 'your location';
     
 
     return (
@@ -30,7 +30,7 @@ export default class Forecast extends Component {
           {forecast.map(item => {
             return <div className="weatherCard">
               <div className="weatherInfoP alignCenter headerOfCard">{item.weather.day} <b className="flexRight alignCenter pl-1"><div className="iconContainer"><Matchicon icon={item.weather.icon} /></div></b></div>
-              <div className="weatherInfoP">Summary:  <b className="pl-1">{item.weather.summary}</b></div><br></br>
+              <div className="weatherInfoP">Summary:  <b className="pl-1 overauto">{item.weather.summary}</b></div><br></br>
               <div className="weatherInfoP">Max:  <b className="pl-1"> {item.weather.temperatureMax}° {unit}</b></div><br></br>
               <div className="weatherInfoP">Min:  <b className="pl-1"> {item.weather.temperatureMin}° {unit}</b></div><br></br>
               <div className="weatherInfoP">Windspeed:  <b className="pl-1"> {item.weather.windSpeed}</b></div> <br></br>

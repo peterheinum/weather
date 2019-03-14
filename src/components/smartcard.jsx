@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../smartcard.css'
+import '../styles/smartcard.css'
 import Matchicon from '../matchicon';
 
 
