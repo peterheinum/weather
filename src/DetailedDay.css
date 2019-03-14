@@ -1,0 +1,17 @@
+.flexbox {
+  display:flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.smallcard {
+  background-color: #ffff;
+  height: 10vh;
+  width: 10vh;
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

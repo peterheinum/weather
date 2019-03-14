@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-import Smartcard from "./components/smartcard";
-import Forecast from "./components/Forecast";
+import Smartcard from './components/Smartcard';
+import Forecast from './components/Forecast';
+import DetailedDay from './components/DetailedDay.jsx';
 import Matchicon from './matchicon';
 
 
 class App extends Component {
   state = {
-    icon: "cloud",
-    searchValue: "",
+    icon: 'cloud',
+    searchValue: '',
     weatherInfo: [],
     loading: false,
-    unit: "C",
+    unit: 'C',
     location: null,
-    typeOFContent: "start",
+    typeOFContent: 'start',
     forecast: [],
+    hourlyDetails: [],
   }
 
   handleSearchQuery = (event) => {
@@ -45,8 +47,7 @@ class App extends Component {
   displayLocationInfo = (position) => {
     const lng = position.coords.longitude;
     const lat = position.coords.latitude;
-    this.setState({ location: `${lat},-${lng}` })
-    this.fetchCity();
+    this.setState({ location: `${lat},-${lng}`, searchValue: `${lat},-${lng}` })
   }
 
   fetchCity = () => {
@@ -67,6 +68,7 @@ class App extends Component {
           "content-type": "application/json"
         }
       }).then(data => data.json()).then(result => {
+        if (location.split(',')[1] !== undefined) location = 'your location';
         this.setState({
           weatherInfo: [
             result.Humidity,
@@ -96,35 +98,62 @@ class App extends Component {
       searchValue = this.state.location;
     }
     this.setState({ loading: true })
-    fetch(`https://weatherbackend.herokuapp.com/api/forecast/${searchValue}/${this.state.unit}`, {
-      headers: {
-        "content-type": "application/json"
-      }
-    }).then(data => data.json()).then(result => {
-      let tempArray = [];
-      let weekArray = this.getWeekFromNow();
-
-      result.forEach(e => {
-        let weather = {
-          day: weekArray[e.dayNr],
-          windSpeed: e.windSpeed,
-          summary: e.summary,
-          temperatureMin: e.temperatureMin,
-          temperatureMax: e.temperatureMax,
-          humidity: e.humidity,
-          sunrise: e.sunrise,
-          sunset: e.sunset,
-          icon: e.icon,
-          apparentTemperatureMin: e.apparentTemperatureMin,
-          apparentTemperatureMax: e.apparentTemperatureMax,
+    if (searchValue.length > 1) {
+      fetch(`https://weatherbackend.herokuapp.com/api/forecast/${searchValue}/${this.state.unit}`, {
+        headers: {
+          "content-type": "application/json"
         }
-        tempArray.push({ weather: weather });
-      });
-      this.setState({ forecast: tempArray, loading: false, typeOFContent: "forecast" })
-    })
+      }).then(data => data.json()).then(result => {
+        let tempArray = [];
+        let weekArray = this.getWeekFromNow();
+
+        result.forEach(e => {
+          let weather = {
+            day: weekArray[e.dayNr],
+            windSpeed: e.windSpeed,
+            summary: e.summary,
+            temperatureMin: e.temperatureMin,
+            temperatureMax: e.temperatureMax,
+            humidity: e.humidity,
+            sunrise: e.sunrise,
+            sunset: e.sunset,
+            icon: e.icon,
+            apparentTemperatureMin: e.apparentTemperatureMin,
+            apparentTemperatureMax: e.apparentTemperatureMax,
+          }
+          tempArray.push({ weather: weather });
+        });
+        this.setState({ forecast: tempArray, loading: false, typeOFContent: "forecast" })
+      })
+    }
   }
 
-  getWeekFromNow() {
+  fetchOneDetailedDay = () => {
+    this.setState({ loading: false })
+    let searchValue = null;
+    let location = "your location";
+    if (this.state.searchValue != null) {
+      searchValue = this.state.searchValue;
+      location = searchValue;
+    }
+    else if (this.state.location != null) {
+      searchValue = this.state.location;
+    }
+    if (searchValue.length > 1) {
+      this.setState({ loading: true })
+      fetch(`https://weatherbackend.herokuapp.com/api/24h/${searchValue}/${this.state.unit}`, {
+        headers: {
+          "content-type": "application/json"
+        }
+      }).then(data => data.json()).then(result => {
+        if (location.split(',')[1] !== undefined) location = 'your location';
+        this.setState({ hourlyDetails: result, loading: false, typeOFContent: "detail" })
+      });
+    }
+  }
+
+
+  getWeekFromNow = () => {
     let date = new Date();
     let counter = date.getDay();
     let start = date.getDay();
@@ -147,6 +176,7 @@ class App extends Component {
         }
       }
     }
+    console.log(weekArray);
     return weekArray;
   }
 
@@ -182,12 +212,13 @@ class App extends Component {
     if (this.state.typeOFContent === "start") {
       return (
         <div className="App">
-          <div className={this.state.icon}/>
+          <div className={this.state.icon} />
           <div className="BigContainer">
             <div className="Container">
               <input className="searchCityInput" value={this.state.searchValue} onChange={this.handleSearchQuery} onKeyPress={this.handleKeyPress} placeholder="Weather, where?"></input>
               <button className="searchWeatherButton" onClick={this.fetchCity}>now</button>
               <button className="searchWeatherButton" onClick={this.fetchForecast}>forecast</button>
+              <button className="searchWeatherButton" onClick={this.fetchOneDetailedDay}>24h details</button>
               <div className="ml-1">
                 <p><b>C/F</b></p>
                 <label className="switch">
@@ -212,6 +243,12 @@ class App extends Component {
     if (this.state.typeOFContent === "forecast") {
       return (
         <Forecast forecast={this.state.forecast} goback={this.gobackToMainMenu} location={this.state.searchValue} unit={this.state.unit} />
+      )
+    }
+
+    if(this.state.typeOFContent === 'detail') {
+      return ( 
+        <DetailedDay hourlyDetails={this.state.hourlyDetails} goback={this.gobackToMainMenu} location={this.state.searchValue} unit={this.state.unit} />
       )
     }
 

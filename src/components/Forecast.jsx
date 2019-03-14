@@ -5,9 +5,6 @@ import Matchicon from '../matchicon'
 
 
 export default class Forecast extends Component {
-  state = {
-  }
-
   gotomain = () => {
     const { goback } = this.props;
     goback();
