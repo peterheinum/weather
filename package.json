@@ -2,7 +2,7 @@
   "name": "weather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://peterheinum.github.io/weather",
+  "homepage": "http://peterheinum.github.io/weather",
   "dependencies": {
     "materialize-css": "^1.0.0",
     "react": "^16.8.3",
@@ -12,12 +12,14 @@
     "recharts": "^1.5.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "npm run remotePublish && gh-pages -d build",
+    "remotePublish": "git remote set-url origin https://github.com/peterheinum/weather"
+
   },
   "eslintConfig": {
     "extends": "react-app"

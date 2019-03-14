@@ -184,15 +184,57 @@ class App extends Component {
     let icons = [
       'rainy',
       'cloud',
-      // 'sun',
-      // 'cloudtwo',
+      'sun'
     ]
+    let randomIcon = icons[Math.floor(Math.random() * icons.length)];
+    
+    let weatherDiv;
+    if (randomIcon === 'sun') {
+      weatherDiv = (
+        <div className="sunContainer">
+          <div className="theSun">
+            <div className="centerSun"></div>
+            <div className="rays">
+              <div className="ray1">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray2">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray3">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray4">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray5">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray6">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray7">
+                <div className="sunbeam"></div>
+              </div>
+              <div className="ray8">
+                <div className="sunbeam"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      weatherDiv = (<div className="sunContainer"> <div className={randomIcon} /></div>)
+    }
 
-    this.setState({ icon: icons[Math.floor(Math.random() * icons.length)] })
+    this.setState({
+      icon: weatherDiv
+    })
+
   }
 
   gobackToMainMenu = () => {
-    this.setState({ typeOFContent: "start", unit: 'C', searchValue: '', weatherInfo: [], forecast: [] });
+    this.setState({ typeOFContent: "start", unit: 'C', weatherInfo: [], forecast: [] });
   }
 
   componentDidMount() {
@@ -214,7 +256,7 @@ class App extends Component {
     if (this.state.typeOFContent === "start") {
       return (
         <div className="App">
-          <div className={this.state.icon} />
+          {this.state.icon}
           <div className="BigContainer">
             <div className="Container">
               <input className="searchCityInput" value={this.state.searchValue} onChange={this.handleSearchQuery} onKeyPress={this.handleKeyPress} placeholder="Weather, where?"></input>
@@ -222,7 +264,7 @@ class App extends Component {
               <button className="searchWeatherButton" onClick={this.fetchForecast}>forecast</button>
               <button className="searchWeatherButton" onClick={this.fetchOneDetailedDay}>24h details</button>
               <div className="ml-1">
-                <p><b>C/F</b></p>
+                <p><b>Celsius/Fahrenheit</b></p>
                 <label className="switch">
                   <input type="checkbox" onChange={this.switchUnit} />
                   <span className="slider round"></span>
@@ -248,8 +290,8 @@ class App extends Component {
       )
     }
 
-    if(this.state.typeOFContent === 'detail') {
-      return ( 
+    if (this.state.typeOFContent === 'detail') {
+      return (
         <DetailedDay hourlyDetails={this.state.hourlyDetails} goback={this.gobackToMainMenu} location={this.state.searchValue} unit={this.state.unit} />
       )
     }
