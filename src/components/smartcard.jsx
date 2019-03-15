@@ -11,7 +11,6 @@ export default class smartcard extends Component {
 
   render() {
     const { weatherInfo } = this.props;
-    console.log(weatherInfo);
     if (weatherInfo[0] != undefined) {
       return (
         <div className="WholeBody">

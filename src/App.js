@@ -33,7 +33,6 @@ class App extends Component {
 
   switchUnit = (event) => {
     this.state.unit === 'C' ? this.setState({ unit: 'F' }) : this.setState({ unit: 'C' });
-    console.log(this.state.unit);
   }
 
   checkGeolocation = () => {
@@ -170,13 +169,12 @@ class App extends Component {
     for (let i = 0; i < 6; i++) {
       weekArray.push(weekday[counter])
       counter++;
-      if (counter == 6) {
-        for (let j = 0; j < 6; j++) {
+      if (counter == 7) {
+        for (let j = 0; j < 7; j++) {
           weekArray.push(weekday[j]);
         }
       }
     }
-    console.log(weekArray);
     return weekArray;
   }
 
@@ -238,8 +236,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let _element = React.createRef();
-    console.log(_element);
     this.checkGeolocation();
     this.getRandomIcon();
   }
@@ -264,7 +260,7 @@ class App extends Component {
               <button className="searchWeatherButton" onClick={this.fetchForecast}>forecast</button>
               <button className="searchWeatherButton" onClick={this.fetchOneDetailedDay}>24h details</button>
               <div className="ml-1">
-                <p><b>Celsius/Fahrenheit</b></p>
+                <p><b>°C / °F</b></p>
                 <label className="switch">
                   <input type="checkbox" onChange={this.switchUnit} />
                   <span className="slider round"></span>

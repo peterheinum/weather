@@ -157,7 +157,6 @@ Button {
 @media only screen and (max-height: 600px) {
   .searchWeatherButton {
     height: 10vh;
-    width: 20vw;
   }
 }
 
