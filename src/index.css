@@ -145,7 +145,7 @@ Button {
     margin-top: 1vh;
     }
   .searchWeatherButton{
-    height: 30px;
+    height: 35px;
     width:302px;
     margin-top:1vh;
   }
@@ -153,14 +153,3 @@ Button {
     flex-direction: column;
   }
 }
-
-@media only screen and (max-height: 600px) {
-  .searchWeatherButton {
-    height: 10vh;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  
-}
-

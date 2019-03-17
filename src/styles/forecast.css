@@ -27,6 +27,12 @@
 
 }
 
+.absoluteB {
+  position:absolute;  
+  margin-left: 20px;
+  margin-top: 13px;
+  overflow:auto;
+}
 
 .midflex {
   margin-left: 7vw;

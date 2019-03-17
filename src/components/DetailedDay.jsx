@@ -5,7 +5,7 @@ import '../styles/DetailedDay.css';
 
 export default class DetailedDay extends Component {
   state = {
-    
+
   }
 
   gotomain = () => {
@@ -38,13 +38,25 @@ export default class DetailedDay extends Component {
     return (
       <div>
         <div className="topnav"> <button className="backButton" onClick={this.gotomain}>Back</button></div>
-        <div className="flexbox">
+        <h1 className="flexbox">Data for {this.props.location}</h1>
+        <div className="flexbox bigheight">
+       
           <div className="flexColumn">
             <p className="temperature">Temperature °{unit}</p>
             <p className="apparentTemperature">Apparent Temperature °{unit}</p>
           </div>
           <div className="boxForChart">
             {renderLineChart}
+          </div>
+          <div className="smallcardContainer">
+            {hourlyDetails.map(e => {
+              return (
+                <div className="smallcard">
+                  <p> {e.time}</p>
+                  <p>{e.temperature}°{unit}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

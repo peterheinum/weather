@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/smartcard.css';
 import '../styles/forecast.css';
+import '../styles/App.css';
 import Matchicon from '../matchicon'
 
 
@@ -25,7 +26,7 @@ export default class Forecast extends Component {
     return (
       <div className="forecastContainer">
         <div className="topnav"> <button className="backButton" onClick={this.gotomain}>Back</button></div>
-        <div className="midflex alignCenter"><h3>Forecast of weather in <b>{this.uppercaseFirst(location)}</b></h3></div>
+        <div className="midflex alignCenter"><div className="betterCloud"><h3><b className="absoluteB">{this.uppercaseFirst(location)}</b></h3></div></div>
         <div className="midflex">
           {forecast.map(item => {
             return <div className="weatherCard">
