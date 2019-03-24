@@ -39,7 +39,7 @@ class App extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.displayLocationInfo);
     } else {
-      console.log("no")
+      this.setState({searchValue: 'stockholm'});
     }
   }
 
