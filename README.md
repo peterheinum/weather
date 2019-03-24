@@ -1,3 +1,10 @@
+https://peterheinum.github.io/weather/
+
+24h view on mobile looks worse prefer ipad or computer size when looking at the 24h forecast. 
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
